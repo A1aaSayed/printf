@@ -1,15 +1,19 @@
 #include "main.h"
 
+/**
+ * _printf - function that produces output according to a format
+ * @format: character string
+ * Return: return total number of characters printed
+*/
+
 int _printf(const char *format, ...)
 {
 	va_list list;
 	int count = 0, value, num, digit;
 
 	va_start(list, format);
-
 	if (format == NULL)
 		return (-1);
-
 	while (*format)
 	{
 		if (*format != '%')
@@ -25,28 +29,30 @@ int _printf(const char *format, ...)
 			if (*format == 'c')
 			{
 				char ch = va_arg(list, int);
+
 				write(1, &ch, 1);
 				count++;
 			}
 			else if (*format == 's')
 			{
 				char *str = va_arg(list, char*);
+
 				while (*str)
 				{
-					write(1, str, 1);;
+					write(1, str, 1);
 					str++;
 					count++;
 				}
 			}
 			else if (*format == '%')
 			{
-				write(1, "%", 1);
+				write(1, '%', 1);
 				count++;
 			}
-			else if (*format == 'd' ||*format == 'i')
+			else if (*format == 'd' || *format == 'i')
 			{
 				value = va_arg(list, int);
-				while (value > 0) 
+				while (value > 0)
 				{
 					num = value % 10;
 					digit = '0' + num;
@@ -57,7 +63,6 @@ int _printf(const char *format, ...)
 		}
 		format++;
 	}
-
 	va_end(list);
-	return(count);
+	return (count);
 }
