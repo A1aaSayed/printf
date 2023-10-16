@@ -4,62 +4,35 @@
  * _printf - function that produces output according to a format
  * @format: character string
  * Return: return total number of characters printed
-*/
+ */
 
 int _printf(const char *format, ...)
 {
 	va_list list;
-	int count = 0, value, num, digit;
+	int count = 0;
 
 	va_start(list, format);
-	if (format == NULL)
-		return (-1);
-	while (*format)
+	while (format && *format)
 	{
 		if (*format != '%')
-		{
-			write(1, format, 1);
-			count++;
-		}
+			count += write(1, format, 1);
 		else
 		{
 			format++;
-			if (*format == '\0')
+			if (!*format)
 				break;
-			if (*format == 'c')
+			if (*format == 'c' || *format == 'd' || *format == 'i')
 			{
-				char ch = va_arg(list, int);
-
-				write(1, &ch, 1);
-				count++;
+				char ch = (*format == 'c') ? va_arg(list, int) : 0;
+				int value = va_arg(list, int);
+				if (*format == 'd' || *format == 'i')
+					count += (value < 0) ? write(1, "-", 1) : 0;
+				count += write(1, &ch, 1) + print_number(value);
 			}
 			else if (*format == 's')
-			{
-				char *str = va_arg(list, char*);
-
-				while (*str)
-				{
-					write(1, str, 1);
-					str++;
-					count++;
-				}
-			}
+				count += print_string(va_arg(list, char *));
 			else if (*format == '%')
-			{
-				write(1, "%%", 1);
-				count++;
-			}
-			else if (*format == 'd' || *format == 'i')
-			{
-				value = va_arg(list, int);
-				while (value > 0)
-				{
-					num = value % 10;
-					digit = '0' + num;
-					write(1, &digit, 1);
-					value /= 10;
-				}
-			}
+				count += write(1, "%%", 1);
 		}
 		format++;
 	}
