@@ -4,6 +4,7 @@ int _printf(const char *format, ...)
 {
 	va_list list;
 	int count = 0, value, num, digit;
+	char ch, *str;
 
 	va_start(list, format);
 
@@ -24,13 +25,13 @@ int _printf(const char *format, ...)
 				break;
 			if (*format == 'c')
 			{
-				char ch = va_arg(list, int);
+				ch = va_arg(list, int);
 				write(1, &ch, 1);
 				count++;
 			}
 			else if (*format == 's')
 			{
-				char *str = va_arg(list, char*);
+				*str = va_arg(list, char*);
 				while (*str)
 				{
 					write(1, str, 1);;
