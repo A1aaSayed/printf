@@ -11,7 +11,7 @@
 int _putchar(char c);
 int _strlen (char *p);
 int p_char(va_list list);
-int p_percent(void);
+int p_percent(va_list list);
 int p_string(va_list list);
 int p_int(va_list args);
 
