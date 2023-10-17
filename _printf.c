@@ -37,7 +37,7 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 
-				*str = va_arg(list, char*);
+				str = va_arg(list, char*);
 
 				while (*str)
 				{
