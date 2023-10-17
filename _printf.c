@@ -13,7 +13,8 @@ int _printf(const char *format, ...)
 	{
 	if (format[i] == '%')
 	{
-		if (format[i + 1] == 'c')
+		
+		else if (format[i + 1] == 'c')
 			len += p_char(list);
 		else if (format[i + 1] == 's')
 			len += p_string(list);

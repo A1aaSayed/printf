@@ -4,24 +4,17 @@
 
 int p_char(va_list list)
 {
-	char s = va_arg(list, int);
-
-	return (_putchar(s));
+	_putchar(va_arg(ap, int));
+	return (1);
 }
 
-int _strlen(char *p)
-{
-	int len = 0;
 
-	while (*p++)
-		len++;
-	return (len);
-}
 
 /***/
 
-int p_percent(void)
+int p_percent(list)
 {
+	(void);
 	return (_putchar('%'));
 }
 
@@ -30,20 +23,19 @@ int p_percent(void)
 int p_string(va_list list)
 {
 	int i, len;
-	char *p = va_arg(list, char *);
+	char *p;
+
+	p = va_arg(list, char *);
 
 	if (!p)
-	{
 		p = "(null)";
-		len = _strlen(p);
-		for (i = 0; i < len; i++)
-			_putchar(p[i]);
-		return (len);
+	len = 0;
+	while (*ch != '\0')
+	{
+		_putchar((unsigned char) *ch);
+		ch++;
+		len++;
 	}
-	if (p[0] == '\0')
-	return (-1);
-	for (i = 0; p[i] != '\0'; i++)
-		len += _putchar(p[i]);
 
 	return (len);
 }
