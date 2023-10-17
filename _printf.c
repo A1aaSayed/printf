@@ -42,9 +42,6 @@ int _printf(const char *format, ...)
 
 				*str = va_arg(list, char*);
 
-				char *str = va_arg(list, char*);
-
-
 				while (*str)
 				{
 					write(1, str, 1);
