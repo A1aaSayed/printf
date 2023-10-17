@@ -4,7 +4,7 @@
 
 int p_char(va_list list)
 {
-	_putchar(va_arg(ap, int));
+	_putchar(va_arg(list, int));
 	return (1);
 }
 
@@ -14,7 +14,7 @@ int p_char(va_list list)
 
 int p_percent(list)
 {
-	(void);
+	(void)list;
 	return (_putchar('%'));
 }
 
@@ -42,9 +42,9 @@ int p_string(va_list list)
 
 /***/
 
-int p_int(va_list args)
+int p_int(va_list list)
 {
-	int n = va_arg(args, int);
+	int n = va_arg(list, int);
 	int num, last = n % 10, digit, exp = 1;
 	int i = 1;
 
