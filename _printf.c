@@ -31,9 +31,6 @@ int _printf(const char *format, ...)
 			{
 
 				ch = va_arg(list, int);
-
-				char ch = va_arg(list, int);
-
 				write(1, &ch, 1);
 				count++;
 			}
